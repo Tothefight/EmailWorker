@@ -1,0 +1,43 @@
+{
+    "manifest_version": 3,
+    "name": "WORK",
+    "version": "1.0",
+    "description": "Intelligent email assistant.",
+    "permissions": [
+      "activeTab",
+      "storage",
+      "scripting",
+      "identity",
+      "declarativeContent"
+    ],
+    "oauth2": {
+      "client_id": "YOUR_OAUTH_CLIENT_ID",  // Replace!
+      "scopes": [
+        "https://www.googleapis.com/auth/gmail.compose",
+        "https://www.googleapis.com/auth/drive.readonly"  // Add other scopes as needed
+      ]
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {               // Icon paths
+        "16": "images/hammer.png",
+        "32": "images/hammer.png"     // You can add more sizes
+      }
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://mail.google.com/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "options_page": "options.html",  // Declare options page
+   "web_accessible_resources": [
+      {
+        "resources": ["images/hammer.png"],
+        "matches": ["<all_urls>"]
+      }
+    ]
+  }
